@@ -9,14 +9,15 @@ const truncate = (input, len) =>
   input.length > len ? `${input.substring(0, len)}...` : input;
 
 export const StyledButton = styled.button`
-  padding: 10px;
+  padding: 20px;
   border-radius: 50px;
   border: none;
   background-color: var(--secondary);
   padding: 10px;
   font-weight: bold;
+  font-size:20px;
   color: var(--secondary-text);
-  width: 100px;
+  width: 160px;
   cursor: pointer;
   box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
   -webkit-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
@@ -33,9 +34,9 @@ export const StyledRoundButton = styled.button`
   border-radius: 100%;
   border: none;
   background-color: var(--primary);
-  padding: 10px;
+  padding: 20px;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 24px;
   color: var(--primary-text);
   width: 30px;
   height: 30px;
@@ -75,10 +76,10 @@ export const StyledLogo = styled.img`
 `;
 
 export const StyledImg = styled.img`
-  box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);
-  border: 4px dashed var(--secondary);
-  background-color: var(--accent);
-  border-radius: 100%;
+  /*box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);*/
+  /*border: 4px dashed var(--secondary);
+  background-color: var(--accent);*/
+ /*border-radius: 100%;*/
   width: 200px;
   @media (min-width: 900px) {
     width: 250px;
@@ -198,14 +199,14 @@ function App() {
       <s.Container
         flex={1}
         ai={"center"}
-        style={{ padding: 24, backgroundColor: "var(--primary)" }}
+        style={{ padding: 24, backgroundColor: "var(--primary)"}}
         image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
       >
         <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/config/images/example.gif"} />
+            <StyledImg alt={"example"} src={"/config/images/hangry_1.png"} />
           </s.Container>
           <s.SpacerLarge />
           <s.Container
@@ -216,7 +217,7 @@ function App() {
               backgroundColor: "var(--accent)",
               padding: 24,
               borderRadius: 24,
-              border: "4px dashed var(--secondary)",
+             /* border: "4px dashed var(--secondary)",*/
               boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
             }}
           >
@@ -373,8 +374,7 @@ function App() {
           <s.Container flex={1} jc={"center"} ai={"center"}>
             <StyledImg
               alt={"example"}
-              src={"/config/images/example.gif"}
-              style={{ transform: "scaleX(-1)" }}
+              src={"/config/images/reveal-15.png"}
             />
           </s.Container>
         </ResponsiveWrapper>
