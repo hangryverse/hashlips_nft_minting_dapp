@@ -120,6 +120,34 @@ function App() {
     SHOW_BACKGROUND: false,
   });
 
+  const addTokenToWallet= () => {
+    const tokenDecimals = 0;
+    const tokenImage = 'https://www.conreco.com.ar/abuelas-plaza-mayo/output-nft/hidden.png';
+
+    try {
+      window.ethereum.request({
+          method: 'wallet_watchAsset',
+          params: {
+              type: 'ERC20', // Initially only supports ERC20, but eventually more!
+              options: {
+                  address: CONFIG.CONTRACT_ADDRESS, // The address that the token is at.
+                  symbol: CONFIG.SYMBOL, // A ticker symbol or shorthand, up to 5 chars.
+                  decimals: tokenDecimals, // The number of decimals in the token
+                  image: tokenImage, // A string url of the token logo
+              }
+          }
+        }).then(() => {
+            console.log('Thanks for your interest!');
+        }).catch(() => {
+            console.log('Your loss!');
+        });
+
+
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
   const claimNFTs = () => {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
@@ -130,7 +158,7 @@ function App() {
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(mintAmount)
+      .createTokens(mintAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
