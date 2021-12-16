@@ -167,7 +167,10 @@ function App() {
       })
       .once("error", (err) => {
         console.log(err);
-        setFeedback("Sorry, something went wrong please try again later.");
+        let message = JSON.parse(err.message.substring(56).trim().replace("'", " ")).value.data.data;
+        console.log(message[Object.keys(message)[0]].reason);
+
+        setFeedback(message[Object.keys(message)[0]].reason.toString());
         setClaimingNft(false);
       })
       .then((receipt) => {
