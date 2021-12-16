@@ -9,14 +9,15 @@ const truncate = (input, len) =>
   input.length > len ? `${input.substring(0, len)}...` : input;
 
 export const StyledButton = styled.button`
-  padding: 10px;
+  padding: 20px;
   border-radius: 50px;
   border: none;
   background-color: var(--secondary);
   padding: 10px;
   font-weight: bold;
+  font-size:20px;
   color: var(--secondary-text);
-  width: 100px;
+  width: 160px;
   cursor: pointer;
   box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
   -webkit-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
@@ -33,9 +34,9 @@ export const StyledRoundButton = styled.button`
   border-radius: 100%;
   border: none;
   background-color: var(--primary);
-  padding: 10px;
+  padding: 20px;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 24px;
   color: var(--primary-text);
   width: 30px;
   height: 30px;
@@ -75,10 +76,10 @@ export const StyledLogo = styled.img`
 `;
 
 export const StyledImg = styled.img`
-  box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);
-  border: 4px dashed var(--secondary);
-  background-color: var(--accent);
-  border-radius: 100%;
+  /*box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);*/
+  /*border: 4px dashed var(--secondary);
+  background-color: var(--accent);*/
+ /*border-radius: 100%;*/
   width: 200px;
   @media (min-width: 900px) {
     width: 250px;
@@ -120,34 +121,6 @@ function App() {
     SHOW_BACKGROUND: false,
   });
 
-  const addTokenToWallet= () => {
-    const tokenDecimals = 0;
-    const tokenImage = 'https://www.conreco.com.ar/abuelas-plaza-mayo/output-nft/hidden.png';
-
-    try {
-      window.ethereum.request({
-          method: 'wallet_watchAsset',
-          params: {
-              type: 'ERC20', // Initially only supports ERC20, but eventually more!
-              options: {
-                  address: CONFIG.CONTRACT_ADDRESS, // The address that the token is at.
-                  symbol: CONFIG.SYMBOL, // A ticker symbol or shorthand, up to 5 chars.
-                  decimals: tokenDecimals, // The number of decimals in the token
-                  image: tokenImage, // A string url of the token logo
-              }
-          }
-        }).then(() => {
-            console.log('Thanks for your interest!');
-        }).catch(() => {
-            console.log('Your loss!');
-        });
-
-
-    } catch (error) {
-        console.log(error);
-    }
-  }
-
   const claimNFTs = () => {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
@@ -167,10 +140,7 @@ function App() {
       })
       .once("error", (err) => {
         console.log(err);
-        let message = JSON.parse(err.message.substring(56).trim().replace("'", " ")).value.data.data;
-        console.log(message[Object.keys(message)[0]].reason);
-
-        setFeedback(message[Object.keys(message)[0]].reason.toString());
+        setFeedback("Sorry, something went wrong please try again later.");
         setClaimingNft(false);
       })
       .then((receipt) => {
@@ -229,14 +199,14 @@ function App() {
       <s.Container
         flex={1}
         ai={"center"}
-        style={{ padding: 24, backgroundColor: "var(--primary)" }}
+        style={{ padding: 24, backgroundColor: "var(--primary)"}}
         image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
       >
         <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/config/images/example.gif"} />
+            <StyledImg alt={"example"} src={"/config/images/hangry_1.png"} />
           </s.Container>
           <s.SpacerLarge />
           <s.Container
@@ -247,7 +217,7 @@ function App() {
               backgroundColor: "var(--accent)",
               padding: 24,
               borderRadius: 24,
-              border: "4px dashed var(--secondary)",
+             /* border: "4px dashed var(--secondary)",*/
               boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
             }}
           >
@@ -277,7 +247,7 @@ function App() {
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  The sale has ended.
+                  Darn it! We're all out of Hangrys!
                 </s.TextTitle>
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
@@ -391,7 +361,7 @@ function App() {
                           getData();
                         }}
                       >
-                        {claimingNft ? "BUSY" : "BUY"}
+                        {claimingNft ? "WAITING ON HANGRY" : "MINT THAT HANGRY"}
                       </StyledButton>
                     </s.Container>
                   </>
@@ -404,8 +374,7 @@ function App() {
           <s.Container flex={1} jc={"center"} ai={"center"}>
             <StyledImg
               alt={"example"}
-              src={"/config/images/example.gif"}
-              style={{ transform: "scaleX(-1)" }}
+              src={"/config/images/reveal-15.png"}
             />
           </s.Container>
         </ResponsiveWrapper>
