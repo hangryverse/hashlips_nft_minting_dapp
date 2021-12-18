@@ -138,7 +138,7 @@ function App() {
         from: blockchain.account,
         value: totalCostWei,
       })
-      .once("error", (err) => {
+      .on("error", (err) => {
         console.log(err);
         setFeedback("Sorry, something went wrong please try again later.");
         setClaimingNft(false);
@@ -163,8 +163,8 @@ function App() {
 
   const incrementMintAmount = () => {
     let newMintAmount = mintAmount + 1;
-    if (newMintAmount > 10) {
-      newMintAmount = 10;
+    if (newMintAmount > 30) {
+      newMintAmount = 30;
     }
     setMintAmount(newMintAmount);
   };
