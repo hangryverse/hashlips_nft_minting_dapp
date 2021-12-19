@@ -102,9 +102,11 @@ function App() {
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
   const [mintAmount, setMintAmount] = useState(1);
+  const [tokenCount, setTokenCount] = useState();
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     SCAN_LINK: "",
+    ETHERSCAN_API: "",
     NETWORK: {
       NAME: "",
       SYMBOL: "",
@@ -175,6 +177,16 @@ function App() {
     }
   };
 
+  const getTokenCountDown = async () => {
+    let etherRequest = "https://api-rinkeby.etherscan.io/api?module=stats&action=tokensupply&contractaddress="+CONFIG.CONTRACT_ADDRESS+"&apikey="+CONFIG.ETHERSCAN_API;
+    const tokenCountResponse = await fetch(etherRequest);
+    
+    const tokenCount = await tokenCountResponse.json();
+    console.log(tokenCount);
+    setTokenCount(tokenCount.result);
+
+  }
+
   const getConfig = async () => {
     const configResponse = await fetch("/config/config.json", {
       headers: {
@@ -188,10 +200,12 @@ function App() {
 
   useEffect(() => {
     getConfig();
+    getTokenCountDown();
   }, []);
 
   useEffect(() => {
     getData();
+    getTokenCountDown();
   }, [blockchain.account]);
 
   return (
@@ -231,6 +245,12 @@ function App() {
             >
               {data.totalSupply} / {CONFIG.MAX_SUPPLY}
             </s.TextTitle>
+            <s.TextTitle style={{
+                textAlign: "center",
+                fontSize: 50,
+                fontWeight: "bold",
+                color: "var(--accent-text)",
+              }}>Reveal Countdown: {3500-tokenCount}</s.TextTitle>
             <s.TextDescription
               style={{
                 textAlign: "center",
