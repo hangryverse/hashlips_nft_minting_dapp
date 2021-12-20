@@ -10,8 +10,9 @@ const truncate = (input, len) =>
 
 export const StyledButton = styled.button`
   padding: 20px;
-  border-radius: 50px;
+  border-radius: 10px;
   border: none;
+  transform:rotate(2deg);
   background-color: var(--secondary);
   padding: 10px;
   font-weight: bold;
@@ -26,6 +27,10 @@ export const StyledButton = styled.button`
     box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
+  }
+  :hover{
+    transform:rotate(4deg);
+    transform: all ease;
   }
 `;
 
@@ -373,7 +378,7 @@ function App() {
                     </s.Container>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
-                      <StyledButton
+                      <StyledButton className="mintThatShit"
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
@@ -381,7 +386,7 @@ function App() {
                           getData();
                         }}
                       >
-                        {claimingNft ? "WAITING ON HANGRY" : "MINT THAT HANGRY"}
+                        {claimingNft ? "WAITING ON HANGRY" : "GRAB THEM HANGRYS"}
                       </StyledButton>
                     </s.Container>
                   </>
