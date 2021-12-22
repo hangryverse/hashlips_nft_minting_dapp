@@ -138,7 +138,7 @@ function App() {
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .createTokens(mintAmount)
+      .mintHangry(mintAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -255,7 +255,7 @@ function App() {
                 fontSize: 50,
                 fontWeight: "bold",
                 color: "var(--accent-text)",
-              }}>Reveal Countdown: {3500-tokenCount}</s.TextTitle>
+              }}>Reveal Countdown: {11111-data.totalSupply}</s.TextTitle>
             <s.TextDescription
               style={{
                 textAlign: "center",
