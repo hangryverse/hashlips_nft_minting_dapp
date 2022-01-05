@@ -250,12 +250,6 @@ function App() {
             >
               {data.totalSupply} / {CONFIG.MAX_SUPPLY}
             </s.TextTitle>
-            <s.TextTitle style={{
-                textAlign: "center",
-                fontSize: 50,
-                fontWeight: "bold",
-                color: "var(--accent-text)",
-              }}>Reveal Countdown: {11111-data.totalSupply}</s.TextTitle>
             <s.TextDescription
               style={{
                 textAlign: "center",
