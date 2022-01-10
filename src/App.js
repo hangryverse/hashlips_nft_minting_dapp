@@ -247,7 +247,7 @@ function App() {
                 fontWeight: "bold",
                 color: "var(--accent-text)",
               }}
-            >
+            >Presale 29th January / Public sale 31st January<br/>
               {data.totalSupply} / {CONFIG.MAX_SUPPLY}
             </s.TextTitle>
             <s.TextDescription
