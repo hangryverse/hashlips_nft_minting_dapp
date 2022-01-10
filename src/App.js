@@ -220,12 +220,15 @@ function App() {
         ai={"center"}
         style={{ padding: 24, backgroundColor: "var(--primary)"}}
         image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
-      >
-        <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
+      ><a href="https://hangryanimals.com">
+        <StyledLogo alt={"Hangry Animals logo"} src={"/config/images/logo.png"} />
+        </a>
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/config/images/hangry_1.png"} />
+            
+              <StyledImg alt={"Hangry Animals Make Crypto Great Again"} src={"/config/images/hangry_1.png" } />
+            
           </s.Container>
           <s.SpacerLarge />
           <s.Container
@@ -247,7 +250,7 @@ function App() {
                 fontWeight: "bold",
                 color: "var(--accent-text)",
               }}
-            >Presale 29th January / Public sale 31st January<br/>
+            >Presale 29th January<br/>Public sale 31st January<br/>
               {data.totalSupply} / {CONFIG.MAX_SUPPLY}
             </s.TextTitle>
             <s.TextDescription
@@ -392,7 +395,7 @@ function App() {
           <s.SpacerLarge />
           <s.Container flex={1} jc={"center"} ai={"center"}>
             <StyledImg
-              alt={"example"}
+              alt={"Unrevealed AHngry Animals NFT"}
               src={"/config/images/reveal-15.png"}
             />
           </s.Container>
